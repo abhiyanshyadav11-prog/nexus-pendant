@@ -3,6 +3,8 @@ import subprocess
 APPS = {
     "chrome": "start chrome",
     "vscode": "code",
+    "notepad": "notepad",
+    "calculator": "calc",
 }
 
 
