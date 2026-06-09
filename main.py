@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-
 from app.services.app_launcher import launch_app
 from app.services.website_launcher import open_website
+from app.services.command_router import execute_command
 
 app = FastAPI(title="Nexus Pendant Laptop Agent")
 
@@ -12,6 +12,9 @@ class AppRequest(BaseModel):
 
 class WebsiteRequest(BaseModel):
     url: str
+
+class CommandRequest(BaseModel):
+    command: str
 
 @app.get("/")
 def home():
@@ -46,4 +49,13 @@ def open_site(request: WebsiteRequest):
     return {
         "status": "success",
         "url": request.url
+    }
+@app.post("/execute_command")
+def execute(request: CommandRequest):
+
+    result = execute_command(request.command)
+
+    return {
+        "status": "success",
+        "result": result
     }
