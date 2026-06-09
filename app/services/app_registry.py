@@ -5,4 +5,6 @@ APPS = {
     "notepad": "notepad.exe",
     "calculator": "calc.exe",
     "vscode": r"C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\Code.exe",
+    "cmd": r"C:\Windows\System32\cmd.exe",
+    
 }
