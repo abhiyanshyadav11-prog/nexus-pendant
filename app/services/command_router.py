@@ -1,6 +1,8 @@
 from app.services.app_launcher import launch_app
 from app.services.website_launcher import open_website
 from app.services.system_control import lock_pc
+from app.services.file_search import search_files
+from app.services.file_opener import open_file
 
 COMMANDS = {
     "open chrome": lambda: launch_app("chrome"),
@@ -18,8 +20,24 @@ def execute_command(command: str):
 
     command = command.lower().strip()
 
+    if command.startswith("find "):
+
+        query = command.replace("find ", "")
+
+        results = search_files(query)
+
+        return results
+
+    if command.startswith("open file "):
+
+        file_path = command.replace("open file ", "")
+
+        return open_file(file_path)
+
     if command in COMMANDS:
+
         COMMANDS[command]()
+
         return f"Executed: {command}"
 
-    return f"Unknown command: {command}"
+    return "Unknown command"
