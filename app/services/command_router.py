@@ -3,6 +3,7 @@ from app.services.website_launcher import open_website
 from app.services.system_control import lock_pc
 from app.services.file_search import search_files
 from app.services.file_opener import open_file
+from app.services.command_parser import normalize_command
 
 COMMANDS = {
     "open chrome": lambda: launch_app("chrome"),
@@ -18,7 +19,8 @@ COMMANDS = {
 
 def execute_command(command: str):
 
-    command = command.lower().strip()
+    command = normalize_command(command)
+
 
     if command.startswith("find "):
 
