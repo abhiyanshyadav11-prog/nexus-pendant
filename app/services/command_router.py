@@ -1,5 +1,6 @@
 from app.services.app_launcher import launch_app
 from app.services.website_launcher import open_website
+from app.services.system_control import lock_pc
 
 COMMANDS = {
     "open chrome": lambda: launch_app("chrome"),
@@ -9,6 +10,7 @@ COMMANDS = {
 
     "open youtube": lambda: open_website("https://youtube.com"),
     "open github": lambda: open_website("https://github.com"),
+    "lock pc": lambda: lock_pc(),
 }
 
 
