@@ -5,6 +5,7 @@ from app.services.file_search import search_files
 from app.services.file_opener import open_file
 from app.services.command_parser import normalize_command
 from app.services.search_memory import LAST_RESULTS
+from app.services.volume_control import set_volume
 
 COMMANDS = {
     "open youtube": lambda: open_website("https://youtube.com"),
@@ -52,5 +53,19 @@ def execute_command(command: str):
     if command in COMMANDS:
         COMMANDS[command]()
         return f"Executed: {command}"
+    
+    if command.startswith("volume "):
+
+     try:
+
+        percent = int(
+            command.replace("volume ", "")
+        )
+
+        return set_volume(percent)
+
+     except Exception as e:
+
+        return str(e)
 
     return "Unknown command"
